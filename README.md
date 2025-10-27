@@ -1,2 +1,2 @@
 # IncluseeVirtualCommunityCentre
-Video development using Twilio Video SDK
+Video application development using Twilio Video SDK
