@@ -1,0 +1,7 @@
+{
+  "name": "Serverless function twilio app",
+  "description": "This app runs a serverless twilio function",
+  "scopes": ["crm.objects.contacts.read", "crm.objects.contacts.write"],
+  "uid": "serverless-function-twilio-app",
+  "public": false
+}
