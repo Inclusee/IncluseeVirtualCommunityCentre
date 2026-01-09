@@ -6,7 +6,7 @@ exports.main = async function (event, context) {
   const basicAuth = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64');
 
   try {
-    const response = await axios.get('https://vcc-api.aurous.org.au/api/v1/rooms', {
+    const response = await axios.get('https://vcc-api.incluseeconnect.net/api/v1/rooms', {
       headers: {
         Authorization: `Basic ${basicAuth}`,
         'Content-Type': 'application/json'
@@ -29,3 +29,4 @@ exports.main = async function (event, context) {
     };
   }
 };
+
