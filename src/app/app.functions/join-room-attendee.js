@@ -86,7 +86,7 @@ exports.main = async (context = {}) => {
       console.log("⚠️ No Event record found with room_reference:", roomReference);
     }
 
-    const url = `https://vcc-api.aurous.org.au/api/v1/rooms/${roomReference}/join/${userId}`;
+    const url = `https://vcc-api.incluseeconnect.net/api/v1/rooms/${roomReference}/join/${userId}`;
     console.log("Joining room with URL:", url);
 
     const joinResponse = await axios.post(
@@ -121,3 +121,4 @@ exports.main = async (context = {}) => {
     };
   }
 };
+
