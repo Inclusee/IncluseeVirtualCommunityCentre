@@ -17,7 +17,7 @@ exports.main = async (context = {}) => {
     const password = "6bhm+F8enAYTseM3w3KDRhZr77OBvtyfzRjl8ZAms8c=";
     const auth = Buffer.from(`${username}:${password}`).toString("base64");
 
-    const url = `https://vcc-api.aurous.org.au/api/v1/rooms/${roomReference}/join/${userId}`;
+    const url = `https://vcc-api.incluseeconnect.net/api/v1/rooms/${roomReference}/join/${userId}`;
     console.log("Joining room with URL:", url);
 
     const response = await axios.post(
@@ -49,3 +49,4 @@ exports.main = async (context = {}) => {
     };
   }
 };
+
