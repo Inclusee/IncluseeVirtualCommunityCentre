@@ -25,7 +25,7 @@ exports.main = async (context, sendResponse) => {
     console.log("Sending payload to API:", payload);
 
     const response = await axios.post(
-      "https://vcc-api.aurous.org.au/api/v1/rooms",
+      "https://vcc-api.incluseeconnect.net/api/v1/rooms",
       payload,
       {
         headers: {
@@ -53,3 +53,4 @@ exports.main = async (context, sendResponse) => {
     });
   }
 };
+
