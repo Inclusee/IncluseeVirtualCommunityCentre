@@ -1,6 +1,4 @@
 exports.main = async (context) => {
-
-  // 🔍 ENV VAR CHECK
   if (!process.env.HUBSPOT_EVENTS_APP_TOKEN) {
     return {
       statusCode: 500,
