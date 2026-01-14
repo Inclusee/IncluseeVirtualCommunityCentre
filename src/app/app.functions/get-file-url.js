@@ -1,6 +1,13 @@
 const fetch = require('node-fetch');
 
 exports.main = async (context) => {
+  if (!process.env.HUBSPOT_PRIVATE_APP_TOKEN) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'ENV VAR MISSING' }),
+    };
+  }
+  
   // Safely parse the request body
   let body = {};
   if (typeof context.body === 'object' && context.body !== null) {
@@ -69,3 +76,4 @@ exports.main = async (context) => {
     };
   }
 };
+
