@@ -1,6 +1,13 @@
-const axios = require("axios");
-
 exports.main = async (context) => {
+
+  // 🔍 ENV VAR CHECK
+  if (!process.env.HUBSPOT_EVENTS_APP_TOKEN) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "ENV VAR MISSING" }),
+    };
+  }
+
   try {
     const { contactIds } = context.body || {};
 
@@ -27,24 +34,32 @@ exports.main = async (context) => {
       };
 
       try {
-        const res = await axios.post(
+        const res = await fetch(
           "https://api.hubapi.com/crm/v3/objects/contacts/batch/read",
-          payload,
           {
+            method: "POST",
             headers: {
               Authorization: `Bearer ${process.env.HUBSPOT_EVENTS_APP_TOKEN}`,
               "Content-Type": "application/json",
             },
+            body: JSON.stringify(payload),
           }
         );
 
-        (res.data.results || []).forEach((contact) => {
+        if (!res.ok) {
+          const errText = await res.text();
+          throw new Error(`HubSpot API error: ${errText}`);
+        }
+
+        const data = await res.json();
+
+        (data.results || []).forEach((contact) => {
           const props = contact.properties || {};
           const fullName = `${props.firstname || ""} ${props.lastname || ""}`.trim();
           results[contact.id] = fullName || contact.id;
         });
       } catch (err) {
-        console.error("Batch read failed:", err.response?.data || err.message);
+        console.error("Batch read failed:", err.message);
         batch.forEach((id) => {
           results[id] = id; // fallback gracefully
         });
@@ -56,14 +71,13 @@ exports.main = async (context) => {
       body: JSON.stringify({ status: "ok", data: results }),
     };
   } catch (error) {
-    console.error("Serverless error:", error.response?.data || error.message);
+    console.error("Serverless error:", error.message);
 
     return {
       statusCode: 500,
       body: JSON.stringify({
         status: "error",
         message: error.message,
-        details: error.response?.data,
       }),
     };
   }
