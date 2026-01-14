@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 exports.main = async (context) => {
   try {
     const { customObjectId, properties } = context.body;
@@ -33,3 +31,4 @@ exports.main = async (context) => {
     };
   }
 };
+
