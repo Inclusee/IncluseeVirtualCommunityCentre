@@ -11,7 +11,7 @@ exports.main = async (context) => {
       { properties },
       {
         headers: {
-          Authorization: `Bearer ${process.env.HUBSPOT_EVENTS_APP_TOKEN}`,
+          Authorization: `Bearer ${process.env.HUBSPOT_PRIVATE_APP_TOKEN}`,
           "Content-Type": "application/json",
         },
       }
@@ -33,3 +33,4 @@ exports.main = async (context) => {
     };
   }
 };
+
