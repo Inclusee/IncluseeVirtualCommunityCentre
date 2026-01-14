@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 exports.main = async (context) => {
   if (!process.env.HUBSPOT_PRIVATE_APP_TOKEN) {
     return {
@@ -76,4 +74,5 @@ exports.main = async (context) => {
     };
   }
 };
+
 
